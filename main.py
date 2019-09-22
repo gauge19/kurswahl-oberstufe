@@ -2,9 +2,10 @@ import csv
 
 
 class Kurs(object):
-    def __init__(self, name, category):
+    def __init__(self, name, af, kat):
         self.name = name
-        self.category = category
+        self.aufgabenfeld = af
+        self.kategorie = kat # main, lang, art, social, sci, rdm
         self.semester = [False, False, False, False]
         self.leistungskurs = False
 
