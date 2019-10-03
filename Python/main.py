@@ -92,7 +92,6 @@ class MainWindow(Frame):
         lk = self.LKWindows(self) # öffne das LK-Auswahl-Fenster
 
 
-
 root = Tk()
 main = MainWindow(root)
 root.mainloop()
