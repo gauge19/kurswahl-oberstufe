@@ -16,6 +16,12 @@ function car(name, color, year, maxspeed) {
   }
 }
 
+function MyFunc() {
+  var h1 = document.getElementById("heading1");
+  h1.style.color = "blue";
+  h1.innerHTML = "CLICK MOTHAFUCKA!";
+}
+
 var x = randint(10);
 if (x > 5){
   document.write("x is greater than 5, x: " + x);
