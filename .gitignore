@@ -1,2 +1,4 @@
 
 *.pyc
+.idea/kurswahl-oberstufe.iml
+.idea/misc.xml
