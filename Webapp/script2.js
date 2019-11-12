@@ -1,7 +1,3 @@
-function capitalize([firstLetter, ...rest]) {
-  return [firstLetter.toLocaleUpperCase(), ...rest].join('');
-}
-
 function createTable() {
   var body = document.getElementsByTagName("body")[0];
 
@@ -51,7 +47,7 @@ function createTable() {
       td.class = "tdfaecher";
       td.innerHTML = capitalize(kurs);
       tr.appendChild(td);  // append course name to row
-      
+
       for (var i = 1; i < th_list.length-1; i++) { // create buttons for each semester
         td = document.createElement("TD"); // create table cell
         td.class = "tdfaecher";
@@ -105,4 +101,10 @@ function Ausgabe() {
   }
 }
 
+function testCSV() {
+  console.log(parseInt(document.getElementById("deutsch_q2").id.split("_")[1][1]));
+
+}
+
 createTable();
+testCSV();

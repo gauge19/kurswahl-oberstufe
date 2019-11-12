@@ -1,8 +1,61 @@
+var csv = "Deutsch;1;main|\
+Englisch;1;lang|\
+Franzoesisch;1;lang|\
+Spanisch;1;lang|\
+Latein;1;lang|\
+Musik;1;art|\
+Kunst;1;art|\
+DS;1;art|\
+Politikwissenschaften;2;social|\
+Geschichte;2;social|\
+Erdkunde;2;social|\
+Psychologie;2;social|\
+Philosophie;2;social|\
+Mathematik;3;main|\
+Physik;3;sci|\
+Chemie;3;sci|\
+Biologie;3;sci|\
+Informatik;3;rdm|\
+Zusatzkurs;4;rdm|\
+Sport;4;main|\
+Sporttheorie;4;rdm";
+
 class Kursliste {
   constructor () {
     this.kurse_list = [];
 
-    // for i in kurse --> new Kurs(fach, aufgabenfeld, kategorie)
+    // create array with sub arrays for each course
+    var arr1 = csv.split("|");
+    console.log(arr1);
+    var arr2 = [];
+    for (var i = 0; i < arr1.length; i++) {
+      arr2.push(arr1[i].split(";"));
+    }
+
+    // create 'Kurs' object for every subarray and pass arguments
+    for (var i = 0; i < arr2.length; i++) {
+      this.kurse_list.push(new Kurs(arr2[i][0], arr2[i][1], arr2[i][2]));
+    }
+  }
+
+  toggle(pFach, pSemster) {
+    for (kurs of this.kurse_list) {
+      if (pFach == kurs.fach) {
+        kurs.toggle(pSemster);
+        return;
+      }
+    }
+  }
+
+  log() {
+    // log status of each semester of each course to the console
+    for (kurs of this.kurse_list) {
+      var output = kurs.fach + ": ";
+      for (var i = 0; i < kurs.semester_list.length; i++) {
+        output += kurs.semester_list[i].status() + ", ";
+      }
+      console.log(output);
+    }
   }
 }
 
@@ -52,7 +105,7 @@ class Semester {
   }
 
   unselect () {
-    this.selected = false:
+    this.selected = false;
   }
 
   status () {
