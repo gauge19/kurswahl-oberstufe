@@ -51,6 +51,7 @@ function createTable() {
       td.class = "tdfaecher";
       td.innerHTML = capitalize(kurs);
       tr.appendChild(td);  // append course name to row
+      
       for (var i = 1; i < th_list.length-1; i++) { // create buttons for each semester
         td = document.createElement("TD"); // create table cell
         td.class = "tdfaecher";
