@@ -22,11 +22,11 @@ function SemButton(id) {
   }
 
   var btn_info = orig_id.split("_"); // will be ['course_name', 'semester']
-  btn_info[0] = capitalize(btn_info[0]);
+  btn_info[0] = btn_info[0];
   btn_info[1] = parseInt(btn_info[1][1]-1); // turn 'q2' into 2
   console.log("btn_info: " + btn_info);
-  kursliste.toggle(btn_info[0], btn_info[1]);
-  kursliste.log();
+  kursliste.toggle(btn_info[0], btn_info[1]); // tell kursliste to update status of clicked button/semester
+  kursliste.log(); // ouptput kursliste to console
 }
 
 var kursliste = new Kursliste();

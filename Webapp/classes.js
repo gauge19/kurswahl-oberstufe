@@ -26,7 +26,6 @@ class Kursliste {
 
     // create array with sub arrays for each course
     var arr1 = csv.split("|");
-    console.log(arr1);
     var arr2 = [];
     for (var i = 0; i < arr1.length; i++) {
       arr2.push(arr1[i].split(";"));
@@ -56,6 +55,10 @@ class Kursliste {
       }
       console.log(output);
     }
+  }
+
+  get () {
+    return this.kurse_list;
   }
 }
 

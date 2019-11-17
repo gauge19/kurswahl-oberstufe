@@ -4,28 +4,11 @@ function createTable() {
   var div = document.createElement("DIV");
   div.id = "div1";
 
-  var kurse =
-  ["deutsch",
-  "englisch",
-  "französisch",
-  "spanisch",
-  "latein",
-  "musik",
-  "kunst",
-  "ds",
-  "pw",
-  "geschichte",
-  "erdkunde",
-  "psychologie",
-  "philosophie",
-  "mathematik",
-  "physik",
-  "chemie",
-  "biologie",
-  "informatik",
-  "zusatzkurs",
-  "sport",
-  "sporttheorie"]; // list of courses
+  // console.log(kurse);
+  var kurse = [];
+  for (kurs of kursliste.get()) {
+    kurse.push(kurs.fach);
+  }
 
   var tbl = document.createElement("TABLE"); // table element
 
@@ -45,7 +28,7 @@ function createTable() {
     tr.id = kurs;
       td = document.createElement("TD"); // table cell element with course name
       td.class = "tdfaecher";
-      td.innerHTML = capitalize(kurs);
+      td.innerHTML = kurs;
       tr.appendChild(td);  // append course name to row
 
       for (var i = 1; i < th_list.length-1; i++) { // create buttons for each semester
@@ -88,6 +71,7 @@ function createTable() {
 }
 
 function Ausgabe() {
+  /*
   var buttons = document.getElementsByClassName("semesterb");
   for (btn of buttons) {
     var bgcolor = getComputedStyle(btn).backgroundColor;
@@ -98,7 +82,13 @@ function Ausgabe() {
       output = "true";
     }
     console.log(btn.id + ": " + output);
+  }*/
+  // kursliste.log();
+  var li = [];
+  for (kurs of kursliste.get()) {
+    li.push(kurs.fach);
   }
+  console.log(li);
 }
 
 function testCSV() {
@@ -107,4 +97,3 @@ function testCSV() {
 }
 
 createTable();
-testCSV();
