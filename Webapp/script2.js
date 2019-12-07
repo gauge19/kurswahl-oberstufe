@@ -12,7 +12,7 @@ function createTable() {
 
   var tbl = document.createElement("TABLE"); // table element
 
-  var th_list = ["Fächer", "Q1", "Q2", "Q3", "Q4", "Select/Unselect All"] // list of headers
+  var th_list = ["Fächer", "Q1", "Q2", "Q3", "Q4", "Select/Unselect All", "3. PF", "4. PF", "5. PF"] // list of headers
   var tr_th = document.createElement("TR"); // row of headers
   for (var i = 0; i < th_list.length; i++) {
     var th = document.createElement("TH"); // header element
@@ -31,7 +31,7 @@ function createTable() {
       td.innerHTML = kurs;
       tr.appendChild(td);  // append course name to row
 
-      for (var i = 1; i < th_list.length-1; i++) { // create buttons for each semester
+      for (var i = 1; i <= 4; i++) { // create buttons for each semester
         td = document.createElement("TD"); // create table cell
         td.class = "tdfaecher";
           btn = document.createElement("BUTTON"); // create button
@@ -53,7 +53,7 @@ function createTable() {
       btn.id = kurs;
       btn.onclick = function () { // call button function with id when clicked
         // console.log(this.id);
-        console.log($(this).attr("id"));
+        console.log($(this).attr("id") + " selall");
         if ($(this).css("background-color") == "rgb(128, 128, 128)") {
           $("." + $(this).attr("id")).css("background-color", "green");
         } else {
@@ -62,6 +62,21 @@ function createTable() {
       };
       td.appendChild(btn);
       tr.appendChild(td);
+
+      for (var i = 1; i <= 3; i++) {
+        td = document.createElement("TD");
+        td.class = "pf pf" + i;
+          btn = document.createElement("BUTTON");
+          btn.type = "button";
+          btn.className = "tablebtn pfbtn " + kurs;
+          btn.id = kurs + "_pf" + i;
+          btn.onclick = function () {
+
+          };
+          td.appendChild(btn);
+        tr.appendChild(td);
+      }
+
 
     tbl.appendChild(tr); // append table row to table
   }
