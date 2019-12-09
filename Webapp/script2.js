@@ -54,10 +54,10 @@ function createTable() {
       btn.onclick = function () { // call button function with id when clicked
         // console.log(this.id);
         console.log($(this).attr("id") + " selall");
-        if ($(this).css("background-color") == "rgb(128, 128, 128)") {
-          $("." + $(this).attr("id")).css("background-color", "green");
+        if ($(this).css("background-color") == unchecked_color) {
+          $("." + $(this).attr("id")).css("background-color", checked_color);
         } else {
-          $("." + $(this).attr("id")).css("background-color", "grey");
+          $("." + $(this).attr("id")).css("background-color", unchecked_color);
         }
       };
       td.appendChild(btn);

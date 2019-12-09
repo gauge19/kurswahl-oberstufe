@@ -1,3 +1,6 @@
+const checked_color = "rgb(40, 181, 38)";
+const unchecked_color = "rgb(188, 190, 194)";
+
 function randint(max){
   return Math.floor(Math.random() * Math.floor(max));
 }
@@ -15,10 +18,10 @@ function MyFunc() {
 function SemButton(id) {
   var orig_id = id;
   id = "#" + id;
-  if ($(id).css("background-color") == "rgb(0, 128, 0)") {
-    $(id).css("background-color", "grey");
+  if ($(id).css("background-color") == checked_color) {
+    $(id).css("background-color", unchecked_color);
   } else {
-    $(id).css("background-color", "green");
+    $(id).css("background-color", checked_color);
   }
 
   var btn_info = orig_id.split("_"); // will be ['course_name', 'semester']
