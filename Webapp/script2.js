@@ -12,7 +12,7 @@ function createTable() {
 
   var tbl = document.createElement("TABLE"); // table element
 
-  var th_list = ["Fächer", "Q1", "Q2", "Q3", "Q4", "Select/Unselect All", "3. PF", "4. PF", "5. PF"] // list of headers
+  var th_list = ["Fächer", "Q1", "Q2", "Q3", "Q4", "Select/Unselect All", "3. PF (schriftlich)", "4. PF (mündlich)", "5. PK"] // list of headers
   var tr_th = document.createElement("TR"); // row of headers
   for (var i = 0; i < th_list.length; i++) {
     var th = document.createElement("TH"); // header element
@@ -63,7 +63,9 @@ function createTable() {
       td.appendChild(btn);
       tr.appendChild(td);
 
-      for (var i = 1; i <= 3; i++) {
+      /*
+      // add PF buttons
+      for (var i = 3; i <= 5; i++) {
         td = document.createElement("TD");
         td.class = "pf pf" + i;
           btn = document.createElement("BUTTON");
@@ -71,9 +73,27 @@ function createTable() {
           btn.className = "tablebtn pfbtn " + kurs;
           btn.id = kurs + "_pf" + i;
           btn.onclick = function () {
-
+            PFButton(this.id);
           };
           td.appendChild(btn);
+        tr.appendChild(td);
+      }*/
+
+      // add PF radio buttons
+      for (var i = 3; i <= 5; i++) {
+        td = document.createElement("TD");
+        td.class = "pf pf" + i;
+          radio = document.createElement("INPUT");
+          radio.type = "radio";
+          radio.className = "tblradio pfradio " + kurs;
+          radio.name = "radio_pf" + i;
+          radio.id = kurs + "_" + radio.name;
+          radio.value = kurs;
+          //debugging
+          radio.onclick = function () {
+            console.log("radio: " + this.id);
+          };
+          td.appendChild(radio);
         tr.appendChild(td);
       }
 
@@ -83,27 +103,6 @@ function createTable() {
 
   div.appendChild(tbl);
   body.appendChild(div);
-}
-
-function Ausgabe() {
-  /*
-  var buttons = document.getElementsByClassName("semesterb");
-  for (btn of buttons) {
-    var bgcolor = getComputedStyle(btn).backgroundColor;
-    var output;
-    if (bgcolor == "rgb(128, 128, 128)") {
-      output = "false";
-    } else {
-      output = "true";
-    }
-    console.log(btn.id + ": " + output);
-  }*/
-  // kursliste.log();
-  var li = [];
-  for (kurs of kursliste.get()) {
-    li.push(kurs.fach);
-  }
-  console.log(li);
 }
 
 function testCSV() {

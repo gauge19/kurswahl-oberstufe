@@ -29,4 +29,11 @@ function SemButton(id) {
   // kursliste.log(); // ouptput kursliste to console
 }
 
+function PFButton(id) {
+  var orig_id = id;
+  id = "#" + id;
+
+  console.log(id);
+}
+
 var kursliste = new Kursliste();
