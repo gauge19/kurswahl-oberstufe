@@ -23,6 +23,11 @@ Sporttheorie;4;rdm";
 class Kursliste {
   constructor () {
     this.kurse_list = [];
+    this.pf3;
+    this.pf4;
+    this.p5;
+    this.lk1;
+    this.lk2;
 
     // create array with sub arrays for each course
     var arr1 = csv.split("|");
@@ -69,7 +74,6 @@ class Kurs {
     this.kategorie = kategorie;
 
     this.semester_list = [new Semester(), new Semester(), new Semester(), new Semester()];
-    this.pf = [false, false, false]; // Prüfungsfächer (3., 4., 5.)
   }
 
   select (index) {
@@ -90,23 +94,6 @@ class Kurs {
   toggle (index) {
   // change status of (indexed) semester
     this.get(index).toggle();
-  }
-
-  select_pf (pf) {
-    // select 3rd, 4th or 5th PF
-
-    // failsafe
-    if (pf < 3 || pf > 5) {
-      console.log("'pf' not in necessary range (3-5): " + pf);
-    }
-
-    pf -= 3; // "press" value into range between 0 and 2 for indexing pf-array
-    // toggle state of PF
-    if (this.pf[pf]) {
-      this.pf[pf] = false;
-    } else {
-      this.pf[pf] = true;
-    }
   }
 }
 

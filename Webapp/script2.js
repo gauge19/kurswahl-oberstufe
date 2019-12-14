@@ -12,7 +12,7 @@ function createTable() {
 
   var tbl = document.createElement("TABLE"); // table element
 
-  var th_list = ["Fächer", "Q1", "Q2", "Q3", "Q4", "Select/Unselect All", "3. PF (schriftlich)", "4. PF (mündlich)", "5. PK"] // list of headers
+  var th_list = ["Fächer", "Q1", "Q2", "Q3", "Q4", "Select/Unselect All", "1. LK", "2. LK", "3. PF (schriftlich)", "4. PF (mündlich)", "5. PK"] // list of headers
   var tr_th = document.createElement("TR"); // row of headers
   for (var i = 0; i < th_list.length; i++) {
     var th = document.createElement("TH"); // header element
@@ -52,32 +52,30 @@ function createTable() {
       btn.className  = "tablebtn selall " + kurs;
       btn.id = kurs;
       btn.onclick = function () { // call button function with id when clicked
-        // console.log(this.id);
-        console.log($(this).attr("id") + " selall");
-        if ($(this).css("background-color") == unchecked_color) {
-          $("." + $(this).attr("id")).css("background-color", checked_color);
-        } else {
-          $("." + $(this).attr("id")).css("background-color", unchecked_color);
+        for (var i = 1; i <= 4; i++) {
+          SemButton($(this).attr("id") + "_q" + i);
         }
       };
       td.appendChild(btn);
       tr.appendChild(td);
 
-      /*
-      // add PF buttons
-      for (var i = 3; i <= 5; i++) {
+      // add LK radio buttons
+      for(var i = 1; i <= 2; i++) {
         td = document.createElement("TD");
-        td.class = "pf pf" + i;
-          btn = document.createElement("BUTTON");
-          btn.type = "button";
-          btn.className = "tablebtn pfbtn " + kurs;
-          btn.id = kurs + "_pf" + i;
-          btn.onclick = function () {
-            PFButton(this.id);
+        td.class = "lk lk" + i;
+          radio = document.createElement("INPUT");
+          radio.type = "radio";
+          radio.className = "tblradio lkradio " + kurs;
+          radio.name = "radio_lk" + i;
+          radio.id = kurs + "_lk" + i;
+          radio.value = kurs;
+          //debugging
+          radio.onclick = function () {
+            LKRadioButton(this.id);
           };
-          td.appendChild(btn);
+          td.appendChild(radio);
         tr.appendChild(td);
-      }*/
+      }
 
       // add PF radio buttons
       for (var i = 3; i <= 5; i++) {
@@ -87,11 +85,11 @@ function createTable() {
           radio.type = "radio";
           radio.className = "tblradio pfradio " + kurs;
           radio.name = "radio_pf" + i;
-          radio.id = kurs + "_" + radio.name;
+          radio.id = kurs + "_pf" + i;
           radio.value = kurs;
           //debugging
           radio.onclick = function () {
-            console.log("radio: " + this.id);
+            PFRadioButton(this.id);
           };
           td.appendChild(radio);
         tr.appendChild(td);
@@ -103,11 +101,6 @@ function createTable() {
 
   div.appendChild(tbl);
   body.appendChild(div);
-}
-
-function testCSV() {
-  console.log(parseInt(document.getElementById("deutsch_q2").id.split("_")[1][1]));
-
 }
 
 createTable();
