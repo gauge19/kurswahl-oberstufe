@@ -92,7 +92,8 @@ function LKRadioButton(id) {
 }
 
 function Ausgabe() {
-  $("#demo").html("");
+  $("#demo").html(""); // reset output
+  var valid = true;
 
   //console.log("lk1: " + kursliste.lk1.fach);
   //console.log("lk2: " + kursliste.lk2.fach);
@@ -111,14 +112,22 @@ function Ausgabe() {
   // checks if min. amount was selected
   if (count_sem < 40) {
     log_demo("Es müssen mindestens 40 Kurse gewählt werden! Aktuelle Anzahl: " + count_sem);
+    valid = false;
   }
+
   // checks if one PF/LK each is selected
   if (kursliste.pf3 == undefined || kursliste.pf4 == undefined || kursliste.pf5 == undefined || kursliste.lk1 == undefined || kursliste.lk2 == undefined) {
     log_demo("Es muss jeweils ein Prüfungsfach bzw. Leistungskurs ausgewählt werden.");
+    valid = false;
   }
-  // checks if PFs are the same subject
-  else if (kursliste.pf3 == kursliste.pf4 || kursliste.pf3 == kursliste.pf5 || kursliste.pf4 == kursliste.pf5) {
-    log_demo("Prüfungsfächer müssen unterschiedlich sein!");
+  // checks if PFs or LKs are the same subject
+  else if (kursliste.pf3 == kursliste.pf4 || kursliste.pf3 == kursliste.pf5 ||
+           kursliste.pf4 == kursliste.pf5 || kursliste.lk1 == kursliste.pf3 ||
+           kursliste.lk1 == kursliste.pf4 || kursliste.lk1 == kursliste.pf5 ||
+           kursliste.lk2 == kursliste.pf3 || kursliste.lk2 == kursliste.pf4 ||
+           kursliste.lk2 == kursliste.pf5 || kursliste.lk1 == kursliste.lk2) {
+    log_demo("Prüfungsfächer und LKs müssen unterschiedlich sein!");
+    valid = false;
   }
 
   // check LKs/PFs if all four semesters are selected
@@ -160,12 +169,78 @@ function Ausgabe() {
         }
       }
     }
-    
+
   }
   if (!b) {
     log_demo("Gewählte LKs und Prüfungsfächer müssen jeweils 4 Semester belegt werden.");
+    valid = false;
   }
 
+  // ------------------------------------------------------------------------------------
+  // if entry is valid, check for specific course requierements
+
+  if (valid) {
+
+    // check if (at least) one language has been selected for 4 semesters
+    b = false;
+    for (kurs of kursliste.kurse_list) {
+      if (kurs.kategorie == "lang") {
+        var count_lang = 0;
+        for (sem of kurs.semester_list) {
+          if (sem.status()) {
+            count_lang += 1;
+          }
+        }
+        if (count_lang == 4) {
+          b = true;
+          break;
+        }
+      }
+    }
+    if (!b) {
+      log_demo("Mindestens eine Fremdsprache (Spanisch/Franzoesisch oder Englisch) muss 4 Semester durchgängig belegt werden.");
+    }
+
+    // check if math, german and PE have been selected for 4 semesters
+    for (kurs of kursliste.kurse_list) {
+      var count_main = 0;
+      if (kurs.kategorie == "main") {
+        for (sem of kurs.semester_list) {
+          if (sem.status()) {
+            count_main += 1;
+          }
+        }
+        if (count_main != 4) {
+          log_demo("Mathe, Deutsch und Sport müssen jeweils 4 Semester durchgängig belegt werden.");
+          break;
+        }
+      }
+    }
+
+    // check if (at least) one science has been selected for 4 semesters
+    b = false;
+    for (kurs of kursliste.kurse_list) {
+      if (kurs.kategorie == "sci") {
+        var count_sci = 0;
+        for (sem of kurs.semester_list) {
+          if (sem.status()) {
+            count_sci += 1;
+          }
+        }
+        if (count_sci == 4) {
+          b = true;
+          break;
+        }
+      }
+    }
+    if (!b) {
+      log_demo("Mindestens eine Naturwissenschaft (Physik oder Chemie) muss 4 Semester durchgängig belegt werden.");
+    }
+
+    // es kann bspw. Semester 1 und 3 ausgewählt werden, ohne 2 und 4
+    // Lösung: 2 Knöpfe, Sem 1&2, Sem 3&4 --> Lösen Aktionen für beide Semester aus
+
+  }
 
 }
 

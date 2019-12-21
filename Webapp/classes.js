@@ -2,7 +2,7 @@ var csv = "Deutsch;1;main|\
 Englisch;1;lang|\
 Franzoesisch;1;lang|\
 Spanisch;1;lang|\
-Latein;1;lang|\
+Latein;1;misc|\
 Musik;1;art|\
 Kunst;1;art|\
 DS;1;art|\
@@ -14,11 +14,11 @@ Philosophie;2;social|\
 Mathematik;3;main|\
 Physik;3;sci|\
 Chemie;3;sci|\
-Biologie;3;sci|\
-Informatik;3;rdm|\
-Zusatzkurs;4;rdm|\
+Biologie;3;sci2|\
+Informatik;3;misc|\
+Zusatzkurs;4;misc|\
 Sport;4;main|\
-Sporttheorie;4;rdm";
+Sporttheorie;4;misc";
 
 class Kursliste {
   constructor () {
@@ -28,6 +28,8 @@ class Kursliste {
     this.p5;
     this.lk1;
     this.lk2;
+
+    this.pfs = [this.lk1, this.lk2, this.pf3, this.pf4, this.pf5]
 
     // create array with sub arrays for each course
     var arr1 = csv.split("|");
