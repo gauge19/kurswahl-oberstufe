@@ -29,8 +29,6 @@ class Kursliste {
     this.lk1;
     this.lk2;
 
-    this.pfs = [this.lk1, this.lk2, this.pf3, this.pf4, this.pf5]
-
     // create array with sub arrays for each course
     var arr1 = csv.split("|");
     var arr2 = [];
@@ -42,6 +40,11 @@ class Kursliste {
     for (var i = 0; i < arr2.length; i++) {
       this.kurse_list.push(new Kurs(arr2[i][0], arr2[i][1], arr2[i][2]));
     }
+  }
+
+  pfs() {
+    // returns current selection of LKs/PFs
+    return [this.lk1, this.lk2, this.pf3, this.pf4, this.pf5];
   }
 
   toggle(pFach, pSemster) {

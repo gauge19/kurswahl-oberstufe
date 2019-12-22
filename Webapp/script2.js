@@ -12,7 +12,7 @@ function createTable() {
 
   var tbl = document.createElement("TABLE"); // table element
 
-  var th_list = ["Fächer", "Q1", "Q2", "Q3", "Q4", "Select/Unselect All", "1. LK", "2. LK", "3. PF (schriftlich)", "4. PF (mündlich)", "5. PK"] // list of headers
+  var th_list = ["Fächer", "Q1|Q2", "Q3|Q4", "1. LK", "2. LK", "3. PF (schriftlich)", "4. PF (mündlich)", "5. PK"] // list of headers
   var tr_th = document.createElement("TR"); // row of headers
   for (var i = 0; i < th_list.length; i++) {
     var th = document.createElement("TH"); // header element
@@ -21,8 +21,9 @@ function createTable() {
   }
   tbl.appendChild(tr_th);
 
-
+  // create tablerows for each Kurs
   for (kurs of kurse) {
+
     var tr = document.createElement("TR"); // table row element
     tr.class = "faecher";
     tr.id = kurs;
@@ -31,7 +32,8 @@ function createTable() {
       td.innerHTML = kurs;
       tr.appendChild(td);  // append course name to row
 
-      for (var i = 1; i <= 4; i++) { // create buttons for each semester
+      // create buttons for semester 1/2 and 3/4
+      for (var i = 1; i <= 4; i+=2) {
         td = document.createElement("TD"); // create table cell
         td.class = "tdfaecher";
           btn = document.createElement("BUTTON"); // create button
@@ -45,19 +47,6 @@ function createTable() {
           td.appendChild(btn); // append button to table cell
         tr.appendChild(td); // append table cell to table row
       }
-      td = document.createElement("TD"); // table cell element with select all button
-      td.class = "tdfaecher";
-      btn = document.createElement("BUTTON"); // create button
-      btn.type = "button";
-      btn.className  = "tablebtn selall " + kurs;
-      btn.id = kurs;
-      btn.onclick = function () { // call button function with id when clicked
-        for (var i = 1; i <= 4; i++) {
-          SemButton($(this).attr("id") + "_q" + i);
-        }
-      };
-      td.appendChild(btn);
-      tr.appendChild(td);
 
       // add LK radio buttons
       for(var i = 1; i <= 2; i++) {
