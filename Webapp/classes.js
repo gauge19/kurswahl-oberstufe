@@ -14,7 +14,7 @@ Philosophie;2;social|\
 Mathematik;3;main|\
 Physik;3;sci|\
 Chemie;3;sci|\
-Biologie;3;sci2|\
+Biologie;3;bio|\
 Informatik;3;misc|\
 Zusatzkurs;4;misc|\
 Sport;4;main|\
