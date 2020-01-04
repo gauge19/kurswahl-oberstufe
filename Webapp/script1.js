@@ -308,17 +308,26 @@ function Ausgabe() {
       log_demo("Es müssen mindestens 2 Semester in künstlerischen Fächern (DS, Musik, Kunst) belegt werden.");
     }
 
+    // check if Geschichte has been selected in sem 3 & 4
+    for (kurs of kursliste.kurse_list) {
+      if (kurs.fach == "Geschichte") {
+        if (kurs.semester_list[2].status() == false || kurs.semester_list[3].status() == false) {
+          log_demo("Geschichte muss mindestens im 3. und 4. Semester belegt werden.");
+          break;
+        }
+      }
+    }
+
     // -----------------------------------------------------------------------------------------------
     // check specific PF requierements
 
-    // Math, German, Language or Science at least one of the PFs
+    // Math, German, Language or Science at least one of the LKs
     b = false;
-    var count_b = 0;
-    for (kurs of kursliste.pfs()) {
-      var count_pf = 0;
+    for (kurs of [kursliste.lk1, kursliste.lk2]) {
+
       if (kurs.fach == "Deutsch" || kurs.fach == "Mathe") {
           b = true;
-          count_b += 1;
+          break;
       }
 
       // check if a langauge is PF (and has been selected for 4 sems)
@@ -331,7 +340,7 @@ function Ausgabe() {
         }
         if (count_lang == 4) {
           b = true;
-          count_b += 1;
+          break;
         }
       }
 
@@ -340,22 +349,76 @@ function Ausgabe() {
         var count_sci = 0;
         for (sem of kurs.semester_list) {
           if (sem.status()) {
-            count_lang += 1;
+            count_sci += 1;
           }
         }
         if (count_sci == 4) {
           b = true;
+          break;
         }
       }
 
     }
     if (!b) {
-      log_demo("Eines der Prüfungsfacher muss Mathe, Deutsch, eine fortgesetzte Fremdsprache oder eine Naturwissenschaft sein.");
+      log_demo("Eines der Leistungskursfächer muss Mathe, Deutsch, eine fortgesetzte Fremdsprache oder eine Naturwissenschaft sein.");
+    }
+
+    // 2 of German, Math or Language in PFs
+    var count_b = 0;
+    for (kurs of kursliste.pfs()) {
+
+      if (kurs.fach == "Deutsch" || kurs.fach == "Mathe") {
+          count_b += 1;
+      }
+
+      // check if a langauge is PF (and has been selected for 4 sems)
+      else if (kurs.kategorie == "lang") {
+        var count_lang = 0;
+        for (sem of kurs.semester_list) {
+          if (sem.status()) {
+            count_lang += 1;
+          }
+        }
+        if (count_lang == 4) {
+          count_b += 1;
+        }
+      }
+
     }
 
     if (count_b < 2) {
       log_demo("Zwei der Prüfungsfächer müssen Mathe, Deutsch oder eine Fremdsprache sein.");
     }
+
+    // All Aufgabenfelder have to be represented in the PFs
+    felder = [false, false, false];
+    for (aufgabenfeld of [1, 2, 3]) {
+      for (kurs of kursliste.pfs()) {
+        if (kurs.aufgabenfeld == aufgabenfeld) {
+          felder[aufgabenfeld-1] = true;
+          break;
+        }
+      }
+    }
+
+    for (feld of felder) {
+      if (!feld) {
+        log_demo("Alle drei Aufgabenfelder müssen unter den Prüfungsfächern vertreten sein.");
+      }
+    }
+
+    // Max. 1 of DS, Musik, Kunst, Sport in PFs
+    var count_b = 0;
+    for (kurs of kursliste.pfs()) {
+
+      if (kurs.fach == "Musik" || kurs.fach == "Kunst" || kurs.fach == "DS" || kurs.fach == "Sport") {
+          count_b += 1;
+      }
+    }
+    if (count_b > 1) {
+      log_demo("Höchstens eines der Fächer Sport, Kunst, Musik oder Darstellendes Spiel (DS) darf unter den Prüfungsfächern vertreten sein.");
+    }
+
   }
 
 }
