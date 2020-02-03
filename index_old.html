@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" http-equiv="refresh" content="0; URL=webapp/index.html">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="classes.js" charset="utf-8"></script>
-    <script src="table.js" charset="utf-8"></script>
+    <script src="src/classes.js" charset="utf-8"></script>
     <title></title>
     <style media="screen">
       .tablebtn {
@@ -27,7 +26,6 @@
       }
 
       #demo {
-        width: 50%;
         font-size: 20px;
       }
 
@@ -36,50 +34,30 @@
         left: 50%;
         top: 2%;
       }
-
-      #ausgabebtn {
-        width: 250px;
-        height: 40px;
-        font-size: 20px;
-        font-weight: bold;
-      }
-
-      #title {
-        position: relative;
-        font-size: 45px;
-        text-decoration: underline;
-      }
-
-      #downloads_p {
-        font-size: 19px;
-        font-weight: bold;
-      }
-
     </style>
+    <script src="src/script1.js" charset="utf-8"></script>
   </head>
   <body>
 
-    <h1 id="title">Kurswahl für die Oberstufe</h1>
-
-    <p id="downloads_p">Downloadbare Inhalte:</p>
+    <p>Downloadbare Inhalte:</p>
     <ul>
       <li>
-        <a href="https://jlgym-berlin.de/jlg/sites/default/files/2017-02/checkliste_solo.pdf">
+        <a target="_blank" href="https://jlgym-berlin.de/jlg/sites/default/files/2017-02/checkliste_solo.pdf">
           Checkliste
         </a>
            - Übersicht der Kursvoraussetzungen
       </li>
       <li>
-        <a href="https://jlgym-berlin.de/jlg/sites/default/files/2018-02/Uebersichtsplan%20JLG%202018_0.pdf">
+        <a target="_blank" href="https://jlgym-berlin.de/jlg/sites/default/files/2018-02/Uebersichtsplan%20JLG%202018_0.pdf">
           Übersichtsplan
         </a>
-           - muss mit der fertigen Kurswahl ausgefüllt und abgegeben werden
+           - muss mit der fertigen Kurswahl ausgeüllt und abgegeben werden
       </li>
     </ul>
 
-    <script src="main.js" charset="utf-8"></script>
+    <script src="src/script2.js" charset="utf-8"></script>
     <br>
-    <button type="button" id="ausgabebtn" onclick="validate()">Kurswahl überprüfen</button>
+    <button type="button" id="ausgabebtn" onclick="Ausgabe()">Ausgabe</button>
     <br>
     <p id="demo"></p>
 
