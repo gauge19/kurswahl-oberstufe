@@ -18,7 +18,7 @@ function log_demo(text) {
     prev = $("#demo").html() + "<br>";
   }
 
-  $("#demo").html(prev+ text);
+  $("#demo").html(prev + text);
 }
 
 function SemButton(id) {
@@ -95,7 +95,7 @@ function LKRadioButton(id) {
   }
 }
 
-function Ausgabe() {
+function validate() {
   $("#demo").html(""); // reset output
   var valid = true;
 
@@ -421,6 +421,11 @@ function Ausgabe() {
 
   }
 
+  if ($("#demo").html() == "") {
+    $("#demo").html("Herzlichen Glückwunsch, deine Kurswahl erfüllt alle Anforderungen!");
+  }
+
 }
 
 var kursliste = new Kursliste();
+createTable();

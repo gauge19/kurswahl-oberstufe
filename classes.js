@@ -1,3 +1,4 @@
+// CSV file in "src/kurse.csv"
 var csv = "Deutsch;1;main|\
 Englisch;1;lang|\
 Franzoesisch;1;lang|\
@@ -47,10 +48,10 @@ class Kursliste {
     return [this.lk1, this.lk2, this.pf3, this.pf4, this.pf5];
   }
 
-  toggle(pFach, pSemster) {
+  toggle(pFach, pSemester) {
     for (kurs of this.kurse_list) {
       if (pFach == kurs.fach) {
-        kurs.toggle(pSemster);
+        kurs.toggle(pSemester);
         return;
       }
     }

@@ -91,5 +91,3 @@ function createTable() {
   div.appendChild(tbl);
   body.appendChild(div);
 }
-
-createTable();
