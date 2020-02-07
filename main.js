@@ -422,7 +422,7 @@ function validate() {
   }
 
   if ($("#demo").html() == "") {
-    $("#demo").html("Herzlichen Glückwunsch, deine Kurswahl erfüllt alle Anforderungen!");
+    $("#demo").html('Herzlichen Glückwunsch, deine Kurswahl erfüllt alle Anforderungen! Bitte fülle nun <a target="_blank" href="https://jlgym-berlin.de/jlg/sites/default/files/2018-02/Uebersichtsplan%20JLG%202018_0.pdf">dieses Dokument</a> mit deiner Kurswahl aus und gib es bei deinen Koordinatoren ab.');
   }
 
 }
