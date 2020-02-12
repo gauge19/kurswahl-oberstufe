@@ -1,10 +1,10 @@
+/** Erstellt die Tabelle auf der HTML-Seite. */
 function createTable() {
   var body = document.getElementsByTagName("body")[0];
 
   var div = document.createElement("DIV");
   div.id = "div1";
 
-  // console.log(kurse);
   var kurse = [];
   for (kurs of kursliste.get()) {
     kurse.push(kurs.fach);

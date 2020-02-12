@@ -21,6 +21,14 @@ function log_demo(text) {
   $("#demo").html(prev + text);
 }
 
+
+/**
+ * Ändert den Status der zugeordneten Semester eines bestimmten Kurses.
+ * Außerdem ändert die Funktion die Farbe des Knopfes in den Zustand des Semsters,
+ * grau für "nicht ausgewählt" und grün für "ausgewählt".
+ *
+ * @param  {string} id HTML-ID des gedrückten Knopfes. Enthält Information über assoziierten Kurs und Semester.
+ */
 function SemButton(id) {
   // updates color of button when clicked
   // updates status of uneven semester (1 or 3) as well as the following (2 or 4) so that they can only be selected in pairs
@@ -42,6 +50,12 @@ function SemButton(id) {
   // kursliste.log(); // ouptput kursliste to console
 }
 
+
+/**
+ * Speichert den angelickten Kurs als PF ab.
+ *
+ * @param  {string} id HTML-ID des gedrückten Knopfes. Enthält Information über assoziierten Kurs.
+ */
 function PFRadioButton(id) {
   var orig_id = id;
   id = "#" + id;
@@ -70,6 +84,11 @@ function PFRadioButton(id) {
   }
 }
 
+/**
+ * Speichert den angelickten Kurs als LK ab.
+ *
+ * @param  {string} id HTML-ID des gedrückten Knopfes. Enthält Information über assoziierten Kurs.
+ */
 function LKRadioButton(id) {
   var orig_id = id;
   id = "#" + id;
@@ -95,6 +114,10 @@ function LKRadioButton(id) {
   }
 }
 
+
+/**
+ * Überprüft ob alle Vorraussetzungen erfüllt worden sind und gibt die jeweilige (Fehler-)Meldung aus.
+ */
 function validate() {
   $("#demo").html(""); // reset output
   var valid = true;
@@ -427,5 +450,5 @@ function validate() {
 
 }
 
-var kursliste = new Kursliste();
-createTable();
+var kursliste = new Kursliste(); // Generiere Kursliste-Objekt
+createTable(); // "Baue" die Tabelle

@@ -21,7 +21,18 @@ Zusatzkurs;4;misc|\
 Sport;4;main|\
 Sporttheorie;4;misc";
 
+
+/**
+ * Kursliste-Klasse
+ * Enthält alle wälbaren Kurse, welche aus der CSV Variable ausgelesen werden.
+ */
 class Kursliste {
+
+  /**
+   * constructor - description
+   *
+   * @return {type}  description
+   */
   constructor () {
     this.kurse_list = [];
     this.pf3;
@@ -73,7 +84,19 @@ class Kursliste {
   }
 }
 
+
+/**
+ * Kurs-Klasse
+ * Repäsentiert einen Kurs.
+ * Enthält 4 Semester-Objekte.
+ */
 class Kurs {
+
+  /**
+   * @param  {string} fach         Name des Fachs, bspw. "Deutsch".
+   * @param  {number} aufgabenfeld Aufgabenfeld des Fachs, für Deutsch bspw. 1.
+   * @param  {string} kategorie    Selbsterstellt Kategorisierung der Fächer, bspw. "lang" für Sprachen oder "main" für Pflichfächer.
+   */
   constructor (fach, aufgabenfeld, kategorie) {
     this.fach = fach;
     this.aufgabenfeld = aufgabenfeld;
@@ -103,6 +126,13 @@ class Kurs {
   }
 }
 
+
+/**
+ * Semester-Klasse
+ * Repräsentiert ein wählbares Semester eines Kurs.
+ * Kann entweder gewählt (selected = true) oder nicht gewählt (selected = false) sein.
+ * Letzteres ist der Standard.
+ */
 class Semester {
   constructor () {
     this.selected = false;
